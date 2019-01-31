@@ -1,3 +1,4 @@
+'use strict';
 
 /******************************************
 Treehouse Techdegree:
@@ -8,9 +9,9 @@ Reinhard Liess, 2019
 class Game {
   constructor() {
     this.missed = 0;
+    this.keys = this.createKeys();
     this.phrases = this.createPhrases();
     this.activePhrase = null;
-    this.keys = this.createKeys();
     this.helpDisplayed = false;
   }
   
@@ -19,7 +20,7 @@ class Game {
   * @return {number} Returns the index of this.activePhrase in this.phrases 
   */ 
   get activePhraseIndex() {
-  
+    return this.phrases.findIndex(phrase => phrase.phrase = this.activePhrase.phrase);
   }
   
   /** 
@@ -27,7 +28,7 @@ class Game {
   * @return {number} Returns number of phrases that are still to guess
   */ 
   get phrasesToGuess() {
-  
+    return this.phrases.filter(phrase => !phrase.guessed).length;
   }
   
   /** 
@@ -35,17 +36,25 @@ class Game {
   * @return {array} An array of phrases that are used in the game 
   */ 
   createPhrases() {
-  
+    
   }
   
   /** 
   * Creates key array for translation of a pressed key to a button element 
+  * The y:x index of a key can be used as the nth-child - 1 respectively to target the button in this.translateKey  
   * @return {array} A 2D array of keys representing the on-screen keyboard
   */ 
   createKeys() {
-    // get buttons
-    // document.querySelectorAll('#qwerty > div:nth-child(n) button')
-
+    
+    const keys = [];
+    numRows = document.querySelectorAll('#qwerty > .keyrow').length;
+    for(let y = 0; y < numRows; y++) {
+      const buttons = document.querySelectorAll(`#qwerty > div:nth-child(${y + 1}) button`);
+      const row = [...buttons].map(button => button.textContent);
+      keys.push(row);
+    }
+    console.table(keys);
+    return keys;
   }
   
   /** 
@@ -54,7 +63,15 @@ class Game {
   * @return {HTMLButtonElement} 
   */
   translateKey(key) {
-  // document.querySelector('#qwerty > div:nth-child(2) > button:nth-child(3)')
+    for(let y = 0; y < this.keys.length; y++) {
+      for(let x = 0; x < this.keys[y].length; x++) {
+        if (this.keys[y][x] = key) {
+          const button = document.querySelector(`#qwerty > div:nth-child(${y + 1}) > button:nth-child(${x + 1})`)
+          console.log('Key: %s, textContent: %s', key, button.textContent);
+          return button;
+        }
+      }
+    }
   }
   
   /** 
@@ -62,8 +79,9 @@ class Game {
   * @return {Object} Phrase object chosen to be used 
   */ 
   getRandomPhrase() {
-  // Take into account phrases.guessed prop and .filter array first.
-  
+    const phrases = this.phrases.filter(phrase => !phrase.guessed);
+    const index   = Math.floor(Math.random() * phrases.length);
+    return phrases[index];
   }
   
   /** 
@@ -74,7 +92,7 @@ class Game {
   }
   
   /** 
-  * Handles onscreen keyboard button clicks 
+  * Handles on-screen keyboard button clicks 
   * @param (HTMLButtonElement) button - The clicked button element 
   */ 
   handleInteraction(button) {
@@ -87,6 +105,7 @@ class Game {
   startGame() {
   
   }
+  
   
  /** 
  * Checks for winning move 
@@ -110,19 +129,25 @@ class Game {
   * @param {boolean} gameWon - Whether or not the user won the game 
   */ 
   gameOver(gameWon) {
-  
+ 
   }
   
+  /** 
+  * Resets the game 
+  */ 
+  reset() {
+  /* 
+  // remove listitems when resetting the game
+  listItems = document.querySelector('#phrase > ul li');
+  [...listItems].forEach( (listItem) => {
+  
+  })
+  */
+  
+  }
   
 }
 
 
  
 
-/* 
- // remove listitems when resetting the game
-listItems = document.querySelector('#phrase > ul li');
-[...listItems].forEach( (listItem) => {
-  
-})
- */
