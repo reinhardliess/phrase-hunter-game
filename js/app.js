@@ -17,3 +17,6 @@ Reinhard Liess, 2019
 // Global declarations
 
 // symbolic constants
+
+
+const game = new Game(); 

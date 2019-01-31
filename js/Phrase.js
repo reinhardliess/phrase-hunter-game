@@ -16,7 +16,11 @@ class Phrase {
   * Display phrase on game board 
   */ 
   addPhraseToDisplay() {
-  
+    let string = '';
+    [...this.phrase].forEach(letter => {
+      string += `<li class=${letter === ' ' ? "space" : "hide letter ${letter}}">${letter}</li>`;
+    });
+    document.querySelector('#phrase > ul').innerHTML = string;
   }
   
   /** 

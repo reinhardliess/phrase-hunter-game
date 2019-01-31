@@ -40,14 +40,14 @@ class Game {
   }
   
   /** 
-  * Creates key array for translation of a pressed key to a button element 
+  * Creates key array for translation of a pressed key to a button element of the on-screen keyboard 
   * The y:x index of a key can be used as the nth-child - 1 respectively to target the button in this.translateKey  
   * @return {array} A 2D array of keys representing the on-screen keyboard
   */ 
   createKeys() {
     
     const keys = [];
-    numRows = document.querySelectorAll('#qwerty > .keyrow').length;
+    const numRows = document.querySelectorAll('#qwerty > .keyrow').length;
     for(let y = 0; y < numRows; y++) {
       const buttons = document.querySelectorAll(`#qwerty > div:nth-child(${y + 1}) button`);
       const row = [...buttons].map(button => button.textContent);
