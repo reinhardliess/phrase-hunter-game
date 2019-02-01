@@ -18,5 +18,4 @@ Reinhard Liess, 2019
 
 // symbolic constants
 
-
 const game = new Game(); 

@@ -13,14 +13,28 @@ class Phrase {
   }
   
   /** 
+  * 
+  * @return {DOMelement} Returns element displaying phrase
+  */ 
+  // get ulPhrase() {
+    // return document.querySelector('#phrase > ul');
+  // }
+  
+  /** 
   * Display phrase on game board 
   */ 
   addPhraseToDisplay() {
-    let string = '';
+    /* HTML to create dynamically
+    <li class="hide letter w">w</li>
+    <li class="space"> </li>
+    */  
+    
+    const list = document.querySelector('#phrase > ul');
+    const dom = new DOMhelper;
     [...this.phrase].forEach(letter => {
-      string += `<li class=${letter === ' ' ? "space" : "hide letter ${letter}}">${letter}</li>`;
+      const strClass = letter === ' ' ? 'space' : `hide letter ${letter}`;
+      dom.appendChildEx('li', list, { className: strClass, textContent: letter });
     });
-    document.querySelector('#phrase > ul').innerHTML = string;
   }
   
   /** 

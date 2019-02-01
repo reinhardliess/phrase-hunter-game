@@ -66,7 +66,7 @@ class Game {
     for(let y = 0; y < this.keys.length; y++) {
       for(let x = 0; x < this.keys[y].length; x++) {
         if (this.keys[y][x] = key) {
-          const button = document.querySelector(`#qwerty > div:nth-child(${y + 1}) > button:nth-child(${x + 1})`)
+          const button = document.querySelector(`#qwerty > div:nth-child(${y + 1}) > button:nth-child(${x + 1})`);
           console.log('Key: %s, textContent: %s', key, button.textContent);
           return button;
         }
@@ -138,10 +138,10 @@ class Game {
   reset() {
   /* 
   // remove listitems when resetting the game
-  listItems = document.querySelector('#phrase > ul li');
+  listItems = document.querySelectorAll('#phrase > ul li');
   [...listItems].forEach( (listItem) => {
   
-  })
+  });
   */
   
   }
