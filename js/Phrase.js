@@ -10,6 +10,7 @@ class Phrase {
   constructor(phrase) {
     this.phrase = phrase.toLowerCase();
     this.guessed = false;
+    this.isAnimating = false;
   }
   
   /** 
@@ -50,11 +51,8 @@ class Phrase {
   // FIX: Animation conflicts with overlay
   showMatchedLetter(letter) {
     const letters = document.querySelectorAll(`#phrase > ul > li[class="hide letter ${letter}"]`);
-    const css = new AnimateCss;
-    console.log(letters);
     letters.forEach(element => {
       element.classList.replace('hide', 'show');
-      css.animateNode(element, 'fadeIn');
     });
     
   }

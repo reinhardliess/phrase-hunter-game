@@ -29,8 +29,8 @@ class AnimateCss {
     node.addEventListener('animationend', handleAnimationEnd)
   }
   
-  animateElement(element, animationName, callback) {
-    const node = document.querySelector(element);
+  animateElement(selector, animationName, callback) {
+    const node = document.querySelector(selector);
     this.animateNode(node, animationName, callback);
   }
 }

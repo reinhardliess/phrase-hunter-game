@@ -40,9 +40,5 @@ document.querySelector('#btn__reset').addEventListener('click', event => {
   });
 });
 
-// document.addEventListener('keypress', event => {
-// game.handleInteraction( game.translateKey(event.key) );
-// });
-
 
 

@@ -202,3 +202,10 @@ button {
 .lose a {
   color: var(--color-lose);
 }
+
+#helpmsg {
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
+
+

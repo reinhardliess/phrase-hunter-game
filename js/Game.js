@@ -100,8 +100,15 @@ class Game {
     if (this.helpDisplayed) {
       return;
     }
-    
     this.helpDisplayed = true;
+    
+    const help = document.querySelector('#helpmsg');
+    const css = new AnimateCss;
+    
+    // TODO: add delay in .css file 
+    css.animateNode(help, 'fadeIn', () => setTimeout( () => css.animateNode(help, 'fadeOut', () => help.style.visibility = 'hidden')
+    , 4000) );
+    
   }
   
   /** 
@@ -122,7 +129,7 @@ class Game {
       if ( this.checkForWin() ) {
         this.gameOver(true);
       }
-      } else {
+    } else {
       button.classList.add('wrong');
       this.removeLife();
     }
@@ -137,6 +144,7 @@ class Game {
     document.querySelector('#overlay').style.display = 'none';
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
+    this.displayHelp();
   }
   
   
@@ -163,7 +171,6 @@ class Game {
       css.animateNode(heart, 'fadeOutDown', () => {
         heart.style.display = 'none';
       });
-      // TODO: animation
     }
   }
   
@@ -175,24 +182,26 @@ class Game {
     
     const overlay = document.querySelector('#overlay');
     const h1 = document.querySelector('#game-over-message');
+    const btnReset = document.querySelector('#btn__reset');
+    // REFACTOR: ternary
     overlay.classList.replace('start', gameWon ? 'win' : 'lose');
-    // overlay.style.display = '';
     if (gameWon) {
       this.phrases[this.activePhraseIndex].guessed = true;
       if (!this.phrasesToGuess) {
         h1.textContent = '🎉 Congratulations! You guessed all phrases. 🎉';
         let css = new AnimateCss();
-        css.animateNode(h1, 'tada');
-        // TODO: disable start button
+        css.animateNode(h1, 'zoomIn');
+        btnReset.disabled = true;
+        btnReset.style.display = 'none';
       } else {
-          h1.textContent = 'You won!';
+        h1.textContent = 'You won!';
       }
-        
     } else {
         h1.textContent = 'You lost.';
     }
     if (this.phrasesToGuess) {
       h1.textContent += ` There are still ${this.phrasesToGuess} phrase(s) to guess.`;
+      btnReset.textContent = 'Continue';
     }
     overlay.style.display = '';
       
