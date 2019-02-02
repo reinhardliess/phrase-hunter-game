@@ -37,7 +37,7 @@ class DOMhelper {
   */ 
   // adds tag to target element as a child, sets HTML attributes in oProps
   appendChildEx(elementName, target, oProps) {
-    const element = createElementEx(elementName, oProps);
+    const element = this.createElementEx(elementName, oProps);
     
     target.appendChild(element);
     return element;
