@@ -18,7 +18,7 @@ class Game {
   }
   
   /** 
-    * 
+    * Needed to update the guessed property in this.phrases after a win
     * @return {number} Returns the index of this.activePhrase in this.phrases 
   */ 
   get activePhraseIndex() {
@@ -26,7 +26,6 @@ class Game {
   }
   
   /** 
-    * 
     * @return {number} Returns number of phrases that are still to guess
   */ 
   get phrasesToGuess() {
@@ -61,12 +60,12 @@ class Game {
       const row = [...buttons].map(button => button.textContent);
       keys.push(row);
     }
-    console.table(keys);
+    // console.table(keys);
     return keys;
   }
   
   /** 
-    * Translates key of a keypress event to a button element of the on-screen keyboard
+    * Translates key of a keydown event to a button element of the on-screen keyboard
     * @param  {string} key
     * @return {HTMLButtonElement} 
   */
@@ -75,7 +74,7 @@ class Game {
       const x = this.keys[y].indexOf(key);
       if (x > -1) {
         const button = document.querySelector(`#qwerty > div:nth-child(${y + 1}) > button:nth-child(${x + 1})`);
-        console.log('Key: %s, textContent: %s', key, button.textContent);
+        // console.log('Key: %s, textContent: %s', key, button.textContent);
         return button;
       }
     }
@@ -83,7 +82,7 @@ class Game {
   }
   
   /** 
-    * Selects random phrase from phrases property that wasn't already guessed  
+    * Selects random phrase that wasn't already guessed  
     * @return {Object} Phrase object chosen to be used 
   */ 
   getRandomPhrase() {
@@ -105,9 +104,10 @@ class Game {
     const help = document.querySelector('#helpmsg');
     const css = new AnimateCss;
     
-    // TODO: add delay in .css file 
+    // TODO: add delay in .css file, style box
+    // fade in/out of help message
     css.animateNode(help, 'fadeIn', () => setTimeout( () => css.animateNode(help, 'fadeOut', () => help.style.visibility = 'hidden')
-    , 4000) );
+    , 3000) );
     
   }
   
@@ -116,7 +116,6 @@ class Game {
     * @param (HTMLButtonElement) button - The clicked button element 
   */ 
   handleInteraction(button) {
-    console.log(button);
     // necessary if the player used the physical keyboard to choose a key 
     if (button.disabled) {
       return
@@ -150,7 +149,7 @@ class Game {
   
   /** 
     * Checks for winning move 
-    * @return {boolean} True if game has been won, false if game wasn't won  
+    * @return {boolean} True if game has been won, false if game wasn't
   */ 
   checkForWin() {
     const letters = document.querySelectorAll('#phrase > ul li.letter');
@@ -168,9 +167,7 @@ class Game {
     } else {
       const heart = document.querySelector(`#scoreboard > ol > li:nth-child(${this.missed})`);
       const css = new AnimateCss;
-      css.animateNode(heart, 'fadeOutDown', () => {
-        heart.style.display = 'none';
-      });
+      css.animateNode(heart, 'fadeOutDown', () => heart.style.display = 'none');
     }
   }
   
@@ -183,12 +180,14 @@ class Game {
     const overlay = document.querySelector('#overlay');
     const h1 = document.querySelector('#game-over-message');
     const btnReset = document.querySelector('#btn__reset');
-    // REFACTOR: ternary
-    overlay.classList.replace('start', gameWon ? 'win' : 'lose');
+    
+    // reset styles for overlay, important for 2nd+ time around
+    overlay.classList.remove('start', 'win', 'lose');
     if (gameWon) {
+      overlay.classList.add('win');
       this.phrases[this.activePhraseIndex].guessed = true;
       if (!this.phrasesToGuess) {
-        h1.textContent = '🎉 Congratulations! You guessed all phrases. 🎉';
+        h1.textContent = '🎉 Congratulations! You guessed all the phrases. 🎉';
         let css = new AnimateCss();
         css.animateNode(h1, 'zoomIn');
         btnReset.disabled = true;
@@ -197,33 +196,37 @@ class Game {
         h1.textContent = 'You won!';
       }
     } else {
-        h1.textContent = 'You lost.';
+      overlay.classList.add('lose');  
+      h1.textContent = 'You lost.';
     }
     if (this.phrasesToGuess) {
       h1.textContent += ` There are still ${this.phrasesToGuess} phrase(s) to guess.`;
       btnReset.textContent = 'Continue';
     }
     overlay.style.display = '';
+    this.reset();
       
-    }
-    
-    /** 
-      * Resets the game 
-    */ 
-    reset() {
-      /* Remove all li elements from the Phrase ul element.
-        Enable all of the onscreen keyboard buttons and update each to use the key CSS class, and not use the chosen or wrong CSS classes.
-      Reset all of the heart images (i.e. the player's lives) in the scoreboard at the bottom of the gameboard to display the liveHeart.png image. */
-      /* 
-        // remove listitems when resetting the game
-        
-      */
-      this.activePhrase.removePhraseFromDisplay();
-      
-      
-    }
-    
   }
+    
+  /** 
+    * Resets the game, so that the player can continue until all phrases are guessed
+  */ 
+  reset() {
+    
+    this.activePhrase.removePhraseFromDisplay();
+    // display all hearts again
+    const hearts = document.querySelectorAll(`#scoreboard > ol > li`);
+    hearts.forEach(heart => heart.style.display = '');
+    // reset on-screen keyboard buttons
+    const buttons = document.querySelectorAll('#qwerty .chosen, #qwerty .wrong');
+    buttons.forEach(button => {
+      button.classList.remove('chosen', 'wrong');
+      button.disabled = false;
+    });
+          
+  }
+  
+}
   
   
   

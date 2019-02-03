@@ -10,7 +10,6 @@ class Phrase {
   constructor(phrase) {
     this.phrase = phrase.toLowerCase();
     this.guessed = false;
-    this.isAnimating = false;
   }
   
   /** 
@@ -30,8 +29,10 @@ class Phrase {
     });
   }
   
+  /** 
+  * Removes phrase from game board when the game is reset
+  */ 
   removePhraseFromDisplay() {
-    // const list = document.querySelector('#phrase > ul');
     const listItems = document.querySelectorAll('#phrase > ul li');
     listItems.forEach( listItem => listItem.remove() ); 
   }
@@ -41,20 +42,18 @@ class Phrase {
   * @param (string) letter - Letter to check 
   */ 
   checkLetter(letter) {
-    return this.phrase.indexOf(letter) > -1;
+    // return this.phrase.indexOf(letter) > -1;
+    return this.phrase.includes(letter);
   }
 
   /**  
   * Displays passed letter on screen after a match is found 
   * @param (string) letter - Letter to display 
   */ 
-  // FIX: Animation conflicts with overlay
+  // FIX: Animation conflicts with overlay, test shorter animation and setTimeout in gameover
   showMatchedLetter(letter) {
     const letters = document.querySelectorAll(`#phrase > ul > li[class="hide letter ${letter}"]`);
-    letters.forEach(element => {
-      element.classList.replace('hide', 'show');
-    });
-    
+    letters.forEach( element => element.classList.replace('hide', 'show') );
   }
   
   

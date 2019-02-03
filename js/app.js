@@ -6,32 +6,30 @@
   Reinhard Liess, 2019
 ******************************************/
 
-/* Some additional conventions
+/* Some additional conventions for the complete project
   
   * constants are all uppercase, spaced out with underscores for readability
-  * In for loop conditions, the length of DOM collections is cached in a variable
   * Additional spaces around nested function calls 
   
 */ 
 
 // Global declarations
-
-// symbolic constants
-
 let game; 
 
 document.querySelector('#btn__reset').addEventListener('click', event => {
   game = new Game;
   game.startGame();
   
+  // handle events for on-screen keyboard
   const qwerty = document.querySelector('#qwerty');
   qwerty.addEventListener('click', event => {
-    console.log('button event', event);
+    // console.log('button event', event);
     if (event.target.tagName === 'BUTTON') {
       game.handleInteraction(event.target);
     }
   });
   
+  // handle events for physical keyboard
   document.addEventListener('keydown', event => {
     const button = game.translateKey(event.key);
     if (button) {
