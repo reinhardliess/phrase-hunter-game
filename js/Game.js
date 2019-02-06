@@ -18,8 +18,8 @@ class Game {
   }
   
   /** 
-    * Needed to update the guessed property in this.phrases after a win
-    * @return {number} Returns the index of this.activePhrase in this.phrases 
+    * Needed to update the guessed property in Game.phrases after a win in Game.gameOver()
+    * @return {number} Returns the index of Game.activePhrase in Game.phrases 
   */ 
   get activePhraseIndex() {
     return this.phrases.findIndex(phrase => phrase.phrase === this.activePhrase.phrase);
@@ -38,12 +38,11 @@ class Game {
   */ 
   createPhrases() {
     
-    /*    return [ new Phrase('cut somebody some slack'),
-      new Phrase('it is not rocket science'),
-      new Phrase('your guess is as good as mine'),
-      new Phrase('ball') 
-    ]; */
-    return [ new Phrase('ball') ];
+       return [ new Phrase('cut a long story short'),
+                new Phrase('it is not rocket science'),
+                new Phrase('get bent out of shape'),
+                new Phrase('Let someone off the hook')
+       ];
   }
   
   /** 
@@ -67,7 +66,7 @@ class Game {
   /** 
     * Translates key of a keydown event to a button element of the on-screen keyboard
     * @param  {string} key
-    * @return {HTMLButtonElement} 
+    * @return {HTMLButtonElement} found button or null
   */
   translateKey(key) {
     for(let y = 0; y < this.keys.length; y++) {
@@ -104,7 +103,6 @@ class Game {
     const help = document.querySelector('#helpmsg');
     const css = new AnimateCss;
     
-    // TODO: add delay in .css file, style box
     // fade in/out of help message
     css.animateNode(help, 'fadeIn', () => setTimeout( () => css.animateNode(help, 'fadeOut', () => help.style.visibility = 'hidden')
     , 3000) );
@@ -215,7 +213,7 @@ class Game {
     
     this.activePhrase.removePhraseFromDisplay();
     // display all hearts again
-    const hearts = document.querySelectorAll(`#scoreboard > ol > li`);
+    const hearts = document.querySelectorAll('#scoreboard > ol > li');
     hearts.forEach(heart => heart.style.display = '');
     // reset on-screen keyboard buttons
     const buttons = document.querySelectorAll('#qwerty .chosen, #qwerty .wrong');

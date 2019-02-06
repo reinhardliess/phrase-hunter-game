@@ -8,7 +8,10 @@ Reinhard Liess, 2019
 
 class Phrase {
   constructor(phrase) {
-    this.phrase = phrase.toLowerCase();
+    // filter out anything that isn't a char or a space
+    this.phrase = [...phrase.toLowerCase()]
+        .filter(letter => (letter >= 'a' && letter <= 'z') || letter === ' ')
+        .join('');
     this.guessed = false;
   }
   
@@ -42,7 +45,6 @@ class Phrase {
   * @param (string) letter - Letter to check 
   */ 
   checkLetter(letter) {
-    // return this.phrase.indexOf(letter) > -1;
     return this.phrase.includes(letter);
   }
 
@@ -50,7 +52,6 @@ class Phrase {
   * Displays passed letter on screen after a match is found 
   * @param (string) letter - Letter to display 
   */ 
-  // FIX: Animation conflicts with overlay, test shorter animation and setTimeout in gameover
   showMatchedLetter(letter) {
     const letters = document.querySelectorAll(`#phrase > ul > li[class="hide letter ${letter}"]`);
     letters.forEach( element => element.classList.replace('hide', 'show') );

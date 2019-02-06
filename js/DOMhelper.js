@@ -6,10 +6,9 @@ FSJS project 4 - OOP Game Show App
 Reinhard Liess, 2019
 ******************************************/
 
+// class for easier creating/appending of elements
 class DOMhelper {
-  constructor() {
-  
-  }
+  constructor() {}
   
   /** 
   * Creates DOM element with options
