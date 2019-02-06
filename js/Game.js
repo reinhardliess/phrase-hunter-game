@@ -16,6 +16,7 @@ class Game {
     this.phrases = this.createPhrases();
     this.activePhrase = null;
     this.helpDisplayed = false;
+    this.eventListenersEnabled = false;
   }
   
   /** 
@@ -39,13 +40,13 @@ class Game {
   */ 
   createPhrases() {
     
-       return [ new Phrase('cut a long story short'),
-                new Phrase('it is not rocket science'),
-                new Phrase('get bent out of shape'),
-                new Phrase('Let someone off the hook'),
-                new Phrase('To go from rags to riches')
-       ];
-       
+    return [ new Phrase('cut a long story short'),
+      new Phrase('it is not rocket science'),
+      new Phrase('get bent out of shape'),
+      new Phrase('let someone off the hook'),
+      new Phrase('To go from rags to riches')
+    ];
+    
   }
   
   /** 
@@ -104,9 +105,10 @@ class Game {
     this.helpDisplayed = true;
     
     const help = document.querySelector('#helpmsg');
-    const css = new AnimateCss;
+    help.children[0].textContent = 'You can select keys by mouse or keyboard';
     
     // fade in/out of help message
+    const css = new AnimateCss;
     css.animateNode(help, 'fadeIn', () => setTimeout( () => css.animateNode(help, 'fadeOut', () => help.style.visibility = 'hidden')
     , 3000) );
     
@@ -137,17 +139,50 @@ class Game {
   }
   
   /** 
-    * Begins game by selecting a random phrase and displaying it to user 
+    * Begins game by selecting a random phrase and displaying it to user
+    * Displays help message if necessary
+    * Registers event listeners if necessary
+    * Might be called multiple times until the player has guessed all phrases
   */
   startGame() {
     
     document.querySelector('#overlay').style.display = 'none';
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
+    console.log(this.activePhrase);
     this.displayHelp();
+    this.enableEventListeners();
   }
   
   
+  /**
+    * Enable event listeners for on-screen and physical keyboard
+  */
+  enableEventListeners() {
+    
+    if (this.eventListenersEnabled) {
+      return
+    }
+    this.eventListenersEnabled = true;
+    
+    // handle events for on-screen keyboard
+    document.querySelector('#qwerty').addEventListener('click', event => {
+      if (event.target.tagName === 'BUTTON') {
+        // console.log('button event', event);
+        game.handleInteraction(event.target);
+      }
+    });
+    
+    // handle events for physical keyboard
+    document.addEventListener('keydown', event => {
+      const button = game.translateKey(event.key);
+      if (button) {
+        game.handleInteraction(button);
+      }
+    });
+  }
+  
+   
   /** 
     * Checks for winning move 
     * @return {boolean} True if game has been won, false if game wasn't
@@ -193,10 +228,10 @@ class Game {
         css.animateNode(h1, 'zoomIn');
         btnReset.disabled = true;
         btnReset.style.display = 'none';
-      } else {
+        } else {
         h1.textContent = 'You won!';
       }
-    } else {
+      } else {
       overlay.classList.add('lose');  
       h1.textContent = 'You lost.';
     }
@@ -206,9 +241,9 @@ class Game {
     }
     overlay.style.display = '';
     this.reset();
-      
-  }
     
+  }
+  
   /** 
     * Resets the game, so that the player can continue until all phrases are guessed
   */ 
@@ -224,11 +259,11 @@ class Game {
       button.classList.remove('chosen', 'wrong');
       button.disabled = false;
     });
-          
+    
   }
   
 }
-  
-  
-  
-  
+
+
+
+

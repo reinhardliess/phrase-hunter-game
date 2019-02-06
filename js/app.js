@@ -14,29 +14,10 @@
 */ 
 
 // Global declarations
-let game; 
+const game = new Game; 
 
-document.querySelector('#btn__reset').addEventListener('click', event => {
-  game = new Game;
-  game.startGame();
-  
-  // handle events for on-screen keyboard
-  const qwerty = document.querySelector('#qwerty');
-  qwerty.addEventListener('click', event => {
-    // console.log('button event', event);
-    if (event.target.tagName === 'BUTTON') {
-      game.handleInteraction(event.target);
-    }
-  });
-  
-  // handle events for physical keyboard
-  document.addEventListener('keydown', event => {
-    const button = game.translateKey(event.key);
-    if (button) {
-      game.handleInteraction(button);
-    }
-  });
-});
+document.querySelector('#btn__reset').addEventListener('click', () => game.startGame() );
+
 
 
 
