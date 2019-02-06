@@ -8,6 +8,7 @@
 
 const NUM_LIVES = 5;
 
+// class to manage the game
 class Game {
   constructor() {
     this.missed = 0;
@@ -41,8 +42,10 @@ class Game {
        return [ new Phrase('cut a long story short'),
                 new Phrase('it is not rocket science'),
                 new Phrase('get bent out of shape'),
-                new Phrase('Let someone off the hook')
+                new Phrase('Let someone off the hook'),
+                new Phrase('To go from rags to riches')
        ];
+       
   }
   
   /** 

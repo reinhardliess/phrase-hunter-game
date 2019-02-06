@@ -6,6 +6,7 @@ FSJS project 4 - OOP Game Show App
 Reinhard Liess, 2019
 ******************************************/
 
+// class to manage the displayed phrase
 class Phrase {
   constructor(phrase) {
     // filter out anything that isn't a char or a space
