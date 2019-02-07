@@ -216,7 +216,7 @@ class Game {
 
   /**
     * Increases the value of the missed property
-    * Removes a life/heart from the scoreboard by fading it out downwards
+    * Removes a life/heart from the scoreboard by fading it out down
     * Checks if player has remaining lives and ends game if player is out
   */
   removeLife() {

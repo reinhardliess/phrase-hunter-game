@@ -30,8 +30,8 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
 
 * Added functionality
     * The game tracks which phrases were guessed correctly and lets the player continue until all phrases are guessed
-    * If all phrases were guessed the _Start Game_ button is hidden and the game is over
-    * Because of this addition some game logic had to be changed (see Game.startGame method)
+    * If all phrases were guessed a message is displayed, the _Start Game_ button is hidden and the game is over
+    * Because of this addition some game logic, as laid out in the project's instructions, had to be changed (see app.js and game.js)
 * Created two new classes
     * AnimateCss: wrapper class for access to animate.css
     * DOMhelper: For an easier way to create/append elements in the DOM.
