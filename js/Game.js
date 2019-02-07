@@ -44,7 +44,7 @@ class Game {
       new Phrase('it is not rocket science'),
       new Phrase('get bent out of shape'),
       new Phrase('let someone off the hook'),
-      new Phrase('To go from rags to riches')
+      new Phrase('to go from rags to riches')
     ];
 
   }
