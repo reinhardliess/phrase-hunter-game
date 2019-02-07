@@ -15,7 +15,7 @@ class AnimateCss {
     * Animates DOM node via animate.css 
     * @param (DOMelement) node - The node to animate
     * @param (string) animationName - The name of the animation as defined in animate.css
-    * @param (function) [callback] - Callback function to be executed when the animation as ended
+    * @param (function) [callback] - Callback function to be executed when the animation has ended
   */ 
   animateNode(node, animationName, callback) {
     node.classList.add('animated', animationName);

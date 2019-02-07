@@ -9,7 +9,7 @@ Reinhard Liess, 2019
 // class to manage the displayed phrase
 class Phrase {
   constructor(phrase) {
-    // filter out anything that isn't a char or a space
+    // filter out anything that isn't an a-z char or a space
     this.phrase = [...phrase.toLowerCase()]
         .filter(letter => (letter >= 'a' && letter <= 'z') || letter === ' ')
         .join('');

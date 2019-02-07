@@ -16,6 +16,7 @@
 // Global declarations
 const game = new Game; 
 
+game.disableOnScreenKeyboard();
 document.querySelector('#btn__reset').addEventListener('click', () => game.startGame() );
 
 

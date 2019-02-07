@@ -30,6 +30,7 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
 
 * Added functionality
     * The game tracks which phrases were guessed correctly and lets the player continue until all phrases are guessed
+    * If all phrases were guessed the _Start Game_ button is hidden and the game is over
     * Because of this addition some game logic had to be changed (see Game.startGame method)
 * Created two new classes
     * AnimateCss: wrapper class for access to animate.css
@@ -43,7 +44,7 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
     * Background color showing a chosen letter on the on-screen keyboard is matched with the win color (slightly different shade)
     * Background color showing a wrong letter on the on-screen keyboard is matched with the lose color (slightly different shade)
 * Animations
-    * Created help message with fade-in/fade-out that both the physical and on-screen keyboard can be used to select a letter
+    * Created help message with fade-in/fade-out letting the player know that both the physical and on-screen keyboard can be used to select a letter
     * If selecting a wrong letter, a heart is faded out down and the remaining hearts are moved to the left - reminiscent of some old-school video games (instead of changing the background image to `lostHeart.png`).
     * If all phrases are guessed correctly a congratulation message is zoomed in
 * Styles
@@ -51,7 +52,7 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
 
 ### Some additional coding conventions
 
-* Code is written as declarative as possible
+* I tried to write the code as clear as possible; all class methods are commented, additional comments only when they seemed necessary
 * Constants are all uppercase, spaced out with underscores for readability
 * Additional spaces around nested function calls
 
