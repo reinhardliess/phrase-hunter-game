@@ -6,12 +6,10 @@ Installation: Just download and open `index.html` with your favorite web browser
 
 The goal of this project was to create a browser-based, word guessing game "Phrase Hunter" using JavaScript and OOP (Object-Oriented Programming).
 
-In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to create two JavaScript classes with specific properties and methods. You'll create a Game class for managing the game, and a Phrase class to help with creating an array of Phrase objects.
-
 ## Basic Project requirements
 
 * Use object-oriented JavaScript(OOJS) to create two classes(game.js and phrase.js) with specific methods and properties to manage the game.
-* Select a random, hidden phrase, which a player tries to guess, by clicking letters on an onscreen keyboard.
+* Select a random, hidden phrase, which a player tries to guess, by clicking letters on an on-screen keyboard.
 * Your code will choose a random phrase of a collection of five phrases, split the phrase into letters, and put those letters onto the game board.
 * Each time the player guesses a letter, the program compares the letter the player has chosen with the random phrase. If the letter is in the phrase at least once, the game board displays the chosen letters on the screen.
 * A player continues to select letters until they guess the phrase (and win), or make five incorrect guesses (and lose). 
@@ -31,7 +29,7 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
 * Added functionality
     * The game tracks which phrases were guessed correctly and lets the player continue until all phrases are guessed
     * If all phrases were guessed a message is displayed, the _Start Game_ button is hidden and the game is over
-    * Because of this addition some game logic, as laid out in the project's instructions, had to be changed (see app.js and game.js)
+    * Because of these additions some game logic, as laid out in the project's instructions, had to be changed (see app.js and game.js)
 * Created two new classes
     * AnimateCss: wrapper class for access to animate.css
     * DOMhelper: For an easier way to create/append elements in the DOM.
@@ -55,13 +53,5 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
 * I tried to write the code as clear as possible; all class methods are commented, additional comments only when they seemed necessary
 * Constants are all uppercase, spaced out with underscores for readability
 * Additional spaces around nested function calls
-
-
-
-
-
-
-
-
 
 
