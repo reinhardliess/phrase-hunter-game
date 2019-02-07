@@ -17,6 +17,7 @@ class Game {
     this.activePhrase = null;
     this.helpDisplayed = false;
     this.eventListenersEnabled = false;
+    this.overlay = document.querySelector('#overlay');
   }
 
   /**
@@ -167,7 +168,7 @@ class Game {
   */
   startGame() {
 
-    document.querySelector('#overlay').style.display = 'none';
+    this.overlay.style.display = 'none';
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
     // console.log(this.activePhrase);
@@ -236,14 +237,13 @@ class Game {
   */
   gameOver(gameWon) {
 
-    const overlay = document.querySelector('#overlay');
     const h1 = document.querySelector('#game-over-message');
     const btnReset = document.querySelector('#btn__reset');
 
     // reset styles for overlay
-    overlay.classList.remove('start', 'win', 'lose');
+    this.overlay.classList.remove('start', 'win', 'lose');
     if (gameWon) {
-      overlay.classList.add('win');
+      this.overlay.classList.add('win');
       this.activePhrase.guessed = true;
       if (!this.phrasesToGuess) {
         h1.textContent = '🎉 Congratulations! You guessed all the phrases. 🎉';
@@ -255,7 +255,7 @@ class Game {
         h1.textContent = 'You won!';
       }
     } else {
-      overlay.classList.add('lose');
+      this.overlay.classList.add('lose');
       h1.textContent = 'You lost.';
     }
     // console.table(game.phrases)
@@ -263,9 +263,8 @@ class Game {
       h1.textContent += ` There are still ${this.phrasesToGuess} phrase(s) to guess.`;
       btnReset.textContent = 'Continue';
     }
-    overlay.style.display = '';
+    this.overlay.style.display = '';
     this.reset();
-
   }
 
   /**
