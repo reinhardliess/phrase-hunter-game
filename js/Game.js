@@ -170,7 +170,7 @@ class Game {
     document.querySelector('#overlay').style.display = 'none';
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
-    console.log(this.activePhrase);
+    // console.log(this.activePhrase);
     this.displayHelp();
     this.enableEventListeners();
     this.enableOnScreenKeyboard();
@@ -258,7 +258,7 @@ class Game {
       overlay.classList.add('lose');
       h1.textContent = 'You lost.';
     }
-    console.table(game.phrases)
+    // console.table(game.phrases)
     if (this.phrasesToGuess) {
       h1.textContent += ` There are still ${this.phrasesToGuess} phrase(s) to guess.`;
       btnReset.textContent = 'Continue';
