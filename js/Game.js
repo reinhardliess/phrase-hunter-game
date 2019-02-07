@@ -25,6 +25,13 @@ class Game {
   get phrasesToGuess() {
     return this.phrases.filter(phrase => !phrase.guessed).length;
   }
+  
+  /**
+    * @return {DOMColletion} Returns a DOM collection of buttons of the on-screen keyboard
+  */
+  get qwertyButtons() {
+    return document.querySelectorAll('#qwerty > .keyrow button');
+  }
 
   /**
     * Creates phrases for use in game
@@ -43,21 +50,20 @@ class Game {
   }
 
   /**
-    * Disables on-screen keyboard. In rare cases it could happen to 'tab' to the an on-screen
-    * keyboard button and activate a button with the physical keyboard while the overlay is active
+    * Disables on-screen keyboard. In rare cases it could happen to 'tab' to an on-screen
+    * keyboard button and activate it with the physical keyboard while the overlay is active
+    * This also improves keyboard control: The player can now easily tab between the address bar
+    * and the 'Start Game/Continue' button
   */
   disableOnScreenKeyboard() {
-    const buttons = document.querySelectorAll('#qwerty > .keyrow button');
-    buttons.forEach(button => button.disabled = true);
+    this.qwertyButtons.forEach(button => button.disabled = true);
   }
   
   /**
     * Enables on-screen keyboard. 
   */
-  // FIX: getter
   enableOnScreenKeyboard() {
-    const buttons = document.querySelectorAll('#qwerty > .keyrow button');
-    buttons.forEach(button => button.disabled = false);
+    this.qwertyButtons.forEach(button => button.disabled = false);
   }
   
  
@@ -266,15 +272,13 @@ class Game {
   */
   reset() {
 
-    
     this.missed = 0;
     this.activePhrase.removePhraseFromDisplay();
     // display all hearts again
     const hearts = document.querySelectorAll('#scoreboard > ol > li');
     hearts.forEach(heart => heart.style.display = '');
     // reset on-screen keyboard buttons
-    const buttons = document.querySelectorAll('#qwerty .chosen, #qwerty .wrong');
-    buttons.forEach( button => button.classList.remove('chosen', 'wrong') )
+    this.qwertyButtons.forEach( button => button.classList.remove('chosen', 'wrong') );
     this.disableOnScreenKeyboard();
 
   }
