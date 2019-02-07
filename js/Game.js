@@ -108,9 +108,10 @@ class Game {
     * @return {Object} Phrase object chosen to be used
   */
   getRandomPhrase() {
-    const phrases = this.phrases.filter(phrase => !phrase.guessed);
-    const index   = Math.floor(Math.random() * phrases.length);
-    return phrases[index];
+    const phrasesFiltered = this.phrases.filter(phrase => !phrase.guessed);
+    const index = Math.floor(Math.random() * phrasesFiltered.length);
+    // return valid object reference in this.phrases[], so the guessed property can be updated later
+    return this.phrases.find(phrase => phrase.phrase === phrasesFiltered[index].phrase);
   }
 
   /**
@@ -215,7 +216,7 @@ class Game {
 
   /**
     * Increases the value of the missed property
-    * Removes a life/heart from the scoreboard by fading in downwards
+    * Removes a life/heart from the scoreboard by fading it out downwards
     * Checks if player has remaining lives and ends game if player is out
   */
   removeLife() {

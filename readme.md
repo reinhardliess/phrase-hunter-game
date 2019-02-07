@@ -12,7 +12,7 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
 
 * Use object-oriented JavaScript(OOJS) to create two classes(game.js and phrase.js) with specific methods and properties to manage the game.
 * Select a random, hidden phrase, which a player tries to guess, by clicking letters on an onscreen keyboard.
-* Your code will choose a random phrase of a collection of five phrases, split the phrase into letters, and put those letters onto the gameboard.
+* Your code will choose a random phrase of a collection of five phrases, split the phrase into letters, and put those letters onto the game board.
 * Each time the player guesses a letter, the program compares the letter the player has chosen with the random phrase. If the letter is in the phrase at least once, the game board displays the chosen letters on the screen.
 * A player continues to select letters until they guess the phrase (and win), or make five incorrect guesses (and lose). 
 * If the selected letter is not in the phrase, one of the player's hearts in the scoreboard is changed from a "live" heart to a "lost" heart.
