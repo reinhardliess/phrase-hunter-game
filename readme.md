@@ -37,7 +37,7 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
     * DOMhelper: For an easier way to create/append elements in the DOM.
 * I used the `keydown` event to implement physical keyboard support because `keypress`is deprecated in the current [W3C specifications](https://www.w3.org/TR/uievents/#event-type-keypress)  
 
-## Design changes / CSS
+#### Design changes / CSS
 
 * Color
     * Background color showing matched letters of phrase is matched with background color of hearts (slightly different shade)
@@ -50,7 +50,7 @@ In this project, you'll use JavaScript and OOP (Object-Oriented Programming) to 
 * Styles
     * Added glow to the _Start Game_ button
 
-### Some additional coding conventions
+#### Some additional coding conventions
 
 * I tried to write the code as clear as possible; all class methods are commented, additional comments only when they seemed necessary
 * Constants are all uppercase, spaced out with underscores for readability
