@@ -28,7 +28,7 @@ class Game {
   }
   
   /**
-    * @return {DOMColletion} Returns a DOM collection of buttons of the on-screen keyboard
+    * @return {DOMCollection} Returns a DOM collection of buttons of the on-screen keyboard
   */
   get qwertyButtons() {
     return document.querySelectorAll('#qwerty > .keyrow button');

@@ -27,7 +27,7 @@ The goal of this project was to create a browser-based, word guessing game "Phra
 * Added functionality
   * The game tracks which phrases were guessed correctly and lets the player continue until all phrases are guessed
   * If all phrases were guessed a message is displayed, the _Start Game_ button is hidden and the game is over
-  * Because of these additions some game logic, as laid out in the project's instructions, had to be changed (see app.js and game.js)
+  * Because of these additions some game logic, as laid out in the project's instructions, had to be changed, specifically the game object is only instatiated once in app.js and the event listeners are registered in Game.startGame(), also only once.
   * Created two extra classes
   * AnimateCss: wrapper class for access to animate.css
   * DOMhelper: For an easier way to create/append elements in the DOM.
